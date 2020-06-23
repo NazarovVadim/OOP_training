@@ -18,6 +18,7 @@ DomElement.prototype.createElem = function(){
             width: ${this.width};
             background: ${this.bg};
             font-size: ${this.fontSize};
+            position: absolute;
             `;
         elem.textContent = 'DIV';
         document.body.append(elem);
@@ -29,11 +30,38 @@ DomElement.prototype.createElem = function(){
             width: ${this.width};
             background: ${this.bg};
             font-size: ${this.fontSize};
+            position: absolute;
             `;
         elem.textContent = 'P';
         document.body.append(elem);
     }
 };
 
-const newElem = new DomElement('.wrapper', '250px', '1000px', '#FF00FF', '44px');
-newElem.createElem();
+const newElem = new DomElement('.rect', '100px', '100px', '#FF00FF', '44px');
+
+document.addEventListener('DOMContentLoaded', newElem.createElem());
+const elem = document.querySelector('div');
+console.log(elem);
+
+let x = 0, y = 0;
+
+document.addEventListener('keydown', event => {
+    switch (event.key){
+        case 'ArrowRight':
+            x += 10;
+            elem.style.left = `${x}px`;
+        break;
+        case 'ArrowLeft': 
+            x -= 10;
+            elem.style.left = `${x}px`;
+        break;
+        case 'ArrowUp': 
+            y -= 10;
+            elem.style.top = `${y}px`;
+        break;
+        case 'ArrowDown': 
+            y += 10;
+            elem.style.top = `${y}px`;
+        break;
+    }
+});
